@@ -9,9 +9,11 @@
 #include <unistd.h>
 #include <sys/ioctl.h>
 
-const int up_key_idx=1000;
-const int down_key_idx=1001;
-const int enter_key_idx=1002;
+const int up_key_idx=1001;
+const int down_key_idx=1002;
+const int right_key_idx=1003;
+const int left_key_idx=1004;
+const int enter_key_idx=1005;
 
 // Clear screen (Mac/Linux)
 inline void clearScreen(){
@@ -81,11 +83,16 @@ inline int getKey(){
     if (c=='\x1b'){
         getchar();
         int dir=getchar();
-        if (dir=='A'){
+        switch (dir)
+        {
+        case 'A':
             return up_key_idx;
-        }
-        else if (dir=='B'){
+        case 'B':
             return down_key_idx;
+        case 'C':
+            return right_key_idx;
+        case 'D':
+            return left_key_idx;
         }
     }
     else if (c=='\r'||c=='\n'){
