@@ -7,10 +7,15 @@
 #include "Skill.h"
 #include "menu.h"
 
+
 int main() {
     //change main menu
     showMainMenu();
     //parse input
+    int difficulty;
+    difficulty=showDifficultyMenu();
+    std::cout<<"Selected difficulty: "<<difficulty<<std::endl;
+    pauseConsole();
 
     Player player;
     Enemy enemy;
